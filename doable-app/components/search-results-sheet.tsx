@@ -93,41 +93,33 @@ export function SearchResultsSheet({ isOpen, onOpenChange, searchQuery, onSearch
 
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
-      <SheetContent side="bottom" className="h-[85vh] sm:h-[85vh] overflow-y-auto">
-        <SheetHeader className="sticky top-0 z-10 bg-background pb-4">
+      <SheetContent side="bottom">
+        <SheetHeader className="bg-background pb-4">
           <div className="flex items-center justify-between">
             <SheetTitle>Itinerary Results</SheetTitle>
-            <SheetClose asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full transition-all duration-200 hover:bg-destructive/10"
-              >
-                <X className="h-4 w-4" />
-              </Button>
-            </SheetClose>
           </div>
-          <SheetDescription>
-            Based on your search for <span className="font-medium">"{searchQuery}"</span>
-          </SheetDescription>
-          <form onSubmit={handleSearch} className="flex gap-2 mt-2">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search activities, restaurants, locations..."
-                className="pl-10"
-              />
-            </div>
-            <Button type="submit" className="transition-all duration-200">
-              Search
-            </Button>
-          </form>
         </SheetHeader>
 
+        <SheetDescription>
+          Based on your search for <span className="font-medium">"{searchQuery}"</span>
+        </SheetDescription>
+        <form onSubmit={handleSearch} className="flex gap-2 mt-2">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search activities, restaurants, locations..."
+              className="pl-10"
+            />
+          </div>
+          <Button type="submit" className="transition-all duration-200">
+            Search
+          </Button>
+        </form>
+
         <FadeIn direction="up" duration={500}>
-          <div className="mt-6 space-y-2">
+          <div className="mt-6 space-y-2 d-flex" style={{ maxHeight: "70vh", overflowY: "auto", paddingRight: "1rem" }}>
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">Suggested Itinerary</h3>
               <Badge variant="outline" className="flex items-center gap-1 animate-pulse">
@@ -151,15 +143,14 @@ export function SearchResultsSheet({ isOpen, onOpenChange, searchQuery, onSearch
                     <div className="flex items-start gap-4 py-4">
                       {/* Icon */}
                       <div
-                        className={`relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
-                          step.type === "start" || step.type === "end"
+                        className={`relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${step.type === "start" || step.type === "end"
                             ? "bg-primary text-primary-foreground"
                             : step.type === "travel"
                               ? "bg-muted"
                               : step.type === "food"
                                 ? "bg-orange-100 text-orange-600 dark:bg-orange-900 dark:text-orange-300"
                                 : "bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
-                        }`}
+                          }`}
                       >
                         {step.type === "start" || step.type === "end" ? (
                           <MapPin className="h-6 w-6" />
