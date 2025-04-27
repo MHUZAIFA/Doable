@@ -5,7 +5,7 @@ const itinerarySchema = new mongoose.Schema({
   activities: [
     {
       name: String,
-      place_id: String,
+      
       address: String,
       lat: Number,
       lng: Number,
