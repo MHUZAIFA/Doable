@@ -49,9 +49,9 @@ export function AiAssistant({ isAbsolute = false }: AiAssistantProps) {
         >
           <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto">
             <div
-              className="flex flex-row items-center w-full transition-all duration-200 focus-within:ring-2 focus-within:ring-purple-500/50"
+              className="flex flex-row items-center w-full transition-all duration-200 focus-within:ring-2 focus-within:ring-green-500/50"
               style={{
-                border: "1px solid purple",
+                border: "1px solid green",
                 borderRadius: "8px",
                 backgroundColor: "hsl(var(--background))",
               }}
@@ -84,7 +84,7 @@ export function AiAssistant({ isAbsolute = false }: AiAssistantProps) {
                 style={{
                   borderTopLeftRadius: "0",
                   borderBottomLeftRadius: "0",
-                  backgroundColor: "purple",
+                  backgroundColor: "green",
                   color: "white",
                 }}
               >

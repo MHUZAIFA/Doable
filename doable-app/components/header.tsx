@@ -10,8 +10,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { FadeIn } from "@/components/animations/fade-in"
@@ -57,18 +55,6 @@ export function Header() {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="animate-in slide-in-from-top-5 duration-300">
-              <DropdownMenuItem asChild className="transition-colors duration-200 hover:bg-primary/10">
-                <Link href="/itineraries">
-                  <MapPin className="mr-2 h-4 w-4" />
-                  <span>Itineraries</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild className="transition-colors duration-200 hover:bg-primary/10">
-                <Link href="/preferences">
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Preferences</span>
-                </Link>
-              </DropdownMenuItem>
               <DropdownMenuItem asChild className="transition-colors duration-200 hover:bg-primary/10">
                 <Link href="/settings">
                   <Settings className="mr-2 h-4 w-4" />

@@ -230,7 +230,7 @@ export function PreferenceQuestionnaire({ open, onOpenChange }: PreferenceQuesti
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="py-4">
+                <div className="py-4" style={{ overflowY: "auto", height: "60vh", paddingRight: "20px"}}>
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="text-lg font-medium">{currentStepData.title}</h3>
                         <div className="text-sm text-muted-foreground">

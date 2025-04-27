@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState } from "react"
-import { Search } from "lucide-react"
+import { Heart, PlaneTakeoff, Search, Settings2 } from "lucide-react"
 
 import { Carousel } from "@/components/carousel"
 import { ActivityCard } from "@/components/activity-card"
@@ -15,6 +15,9 @@ import { StaggerContainer } from "@/components/animations/stagger-container"
 import { AiAssistant } from "@/components/ai-assistant"
 import { FilterSettings } from "@/components/filter-settings"
 import { Card } from "@/components/ui/card"
+import { PreferenceQuestionnaire } from "@/components/preference-questionnaire"
+import { TripsModal } from "@/components/trips-modal"
+import { FavoritesModal } from "@/components/favorites-modal"
 
 // Sample data for activities and restaurants
 const popularActivities = [
@@ -65,145 +68,6 @@ const popularActivities = [
     },
 ]
 
-const indoorActivities = [
-    {
-        title: "Art Gallery Exhibition",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Modern Art Center",
-        rating: 4.3,
-        duration: "1.5 hrs",
-        price: "$12 per person",
-        type: "Indoor",
-    },
-    {
-        title: "Cooking Class: Italian Cuisine",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Culinary Institute",
-        rating: 4.9,
-        duration: "3 hrs",
-        price: "$65 per person",
-        type: "Indoor",
-    },
-    {
-        title: "Escape Room Challenge",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Puzzle Palace",
-        rating: 4.7,
-        duration: "1 hour",
-        price: "$25 per person",
-        type: "Indoor",
-    },
-    {
-        title: "Pottery Workshop",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Craft Studio",
-        rating: 4.5,
-        duration: "2 hrs",
-        price: "$30 per person",
-        type: "Indoor",
-    },
-    {
-        title: "Virtual Reality Experience",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Tech Zone",
-        rating: 4.8,
-        duration: "1 hour",
-        price: "$35 per person",
-        type: "Indoor",
-    },
-]
-
-const outdoorActivities = [
-    {
-        title: "Zip Line Adventure",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Forest Heights",
-        rating: 4.9,
-        duration: "2 hrs",
-        price: "$45 per person",
-        type: "Outdoor",
-    },
-    {
-        title: "Sunset Beach Yoga",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Sandy Beach",
-        rating: 4.6,
-        duration: "1 hour",
-        price: "$15 per person",
-        type: "Outdoor",
-    },
-    {
-        title: "Rock Climbing Experience",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Granite Cliffs",
-        rating: 4.7,
-        duration: "3 hrs",
-        price: "$50 per person",
-        type: "Outdoor",
-    },
-    {
-        title: "Botanical Garden Tour",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "City Gardens",
-        rating: 4.4,
-        duration: "1.5 hrs",
-        price: "$10 per person",
-        type: "Outdoor",
-    },
-    {
-        title: "Horseback Riding Trail",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Valley Ranch",
-        rating: 4.8,
-        duration: "2 hrs",
-        price: "$60 per person",
-        type: "Outdoor",
-    },
-]
-
-const restaurants = [
-    {
-        title: "The Rustic Table",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Downtown",
-        rating: 4.7,
-        cuisine: "American",
-        priceLevel: "$$$",
-    },
-    {
-        title: "Sakura Sushi",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Eastside",
-        rating: 4.8,
-        cuisine: "Japanese",
-        priceLevel: "$$",
-    },
-    {
-        title: "Olive & Vine",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "Westside",
-        rating: 4.6,
-        cuisine: "Mediterranean",
-        priceLevel: "$$",
-    },
-    {
-        title: "Spice Route",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "North District",
-        rating: 4.5,
-        cuisine: "Indian",
-        priceLevel: "$$",
-    },
-    {
-        title: "El Mariachi",
-        image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
-        location: "South Plaza",
-        rating: 4.4,
-        cuisine: "Mexican",
-        priceLevel: "$",
-    },
-]
-
 export default function Dashboard() {
     // Get user's first title (would come from auth in a real app)
     const userName = "Alex"
@@ -220,6 +84,9 @@ export default function Dashboard() {
     const [filterValue, setFilterValue] = useState("all")
     const [isSheetOpen, setIsSheetOpen] = useState(false)
     const [isFilterOpen, setIsFilterOpen] = useState(false)
+    const [isPreferenceModalOpen, setIsPreferenceModalOpen] = useState(false)
+    const [isTripsModalOpen, setIsTripsModalOpen] = useState(false)
+    const [isFavModalOpen, setIsFavModalOpen] = useState(false)
 
     // Get time of day for greeting
     const getGreeting = () => {
@@ -281,6 +148,38 @@ export default function Dashboard() {
                             <h3 className="text-sm mt-2 font-semibold">Destinations</h3>
                         </Card>
                     </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
+                        <Card className="p-6 shadow-lg rounded-lg flex items-center space-x-4" onClick={() => setIsTripsModalOpen(true)}>
+                            <div className="bg-green-500 text-white p-3 rounded-full">
+                            <PlaneTakeoff />
+                            </div>
+                            <div>
+                                <p className="text-xl font-bold">Trips</p>
+                                <p className="text-sm text-muted-foreground">Manage your trips</p>
+                            </div>
+                        </Card>
+
+                        <Card className="p-6 shadow-lg rounded-lg flex items-center space-x-4" onClick={() => setIsPreferenceModalOpen(true)}>
+                            <div className="bg-orange-500 text-white p-3 rounded-full">
+                            <Settings2 />
+                            </div>
+                            <div>
+                                <p className="text-xl font-bold">Preferences</p>
+                                <p className="text-sm text-muted-foreground">Set your preferences</p>
+                            </div>
+                        </Card>
+
+                        <Card className="p-6 shadow-lg rounded-lg flex items-center space-x-4" onClick={() => setIsFavModalOpen(true)}>
+                            <div className="bg-purple-500 text-white p-3 rounded-full">
+                            <Heart />
+                            </div>
+                            <div>
+                                <p className="text-xl font-bold">Favourites</p>
+                                <p className="text-sm text-muted-foreground">Adjust your settings</p>
+                            </div>
+                        </Card>
+                    </div>
                 </div>
 
                 <div className="flex">
@@ -330,6 +229,10 @@ export default function Dashboard() {
                 searchQuery={searchQuery}
                 onSearchChange={setSearchQuery}
             />
+
+            <PreferenceQuestionnaire open={isPreferenceModalOpen} onOpenChange={setIsPreferenceModalOpen} />
+            <TripsModal open={isTripsModalOpen} onOpenChange={setIsTripsModalOpen} />
+            <FavoritesModal open={isFavModalOpen} onOpenChange={setIsFavModalOpen} />
         </div>
     )
 }

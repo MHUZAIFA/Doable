@@ -12,7 +12,6 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { toast } from "@/hooks/use-toast"
-import { FilterSettings } from "@/components/filter-settings"
 import { PreferenceQuestionnaire } from "@/components/preference-questionnaire"
 
 export default function SettingsPage() {
