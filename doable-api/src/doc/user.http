@@ -1,0 +1,57 @@
+@api=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJyT1BLSXdOQTlweGNSTEhfVGR3MiJ9.eyJpc3MiOiJodHRwczovL2Rldi1zdGhnMnJsa3FxbHh4a2V1LmNhLmF1dGgwLmNvbS8iLCJzdWIiOiJkQ1Bqd2FEWXFXWjY0b0tZYURrODRMRXNjRW9mWjJKU0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtc3RoZzJybGtxcWx4eGtldS5jYS5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTc0NTcxOTA1NSwiZXhwIjoxNzQ1ODA1NDU1LCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiJkQ1Bqd2FEWXFXWjY0b0tZYURrODRMRXNjRW9mWjJKUyJ9.hZOGE7prxp6IykSnHDdx3u4O41PAArbui-ISQA1YIiVQvodrP2M6_HgGi9pLBVbnlwbam8JUD3_Lj3vRIY0ncVxoxT1TrGZpMv1GMpq6N9_1dSaCKEZ0TTdzBczwvqJLki5CFLtzg4YSUIoLXdl92Vrz2in7B0u6SaU-4GUxKqDlWmk4RPYh1Uhi7dXbbOVPcEiv_UqhwtBKcsVSGq3KOFV7IL_ZYC3Ll6bNhNZvMg6Z3E7Yhj9gkGdhibW7FiXluJ7hG11bujQSPmTwmD5ZubNn6DtaQtIz3RCdnbvVqBpvScQZeAv2SUpzi-3NNUDByZnzmjvImxXrO2cLcWBjCQ
+
+### Health Check (Public, No Auth)
+GET http://localhost:4000/api/health
+Accept: application/json
+
+###
+
+### Get a User (Protected with Auth0 Token)
+GET http://localhost:4000/api/users/abc123
+Authorization: Bearer {{api}}
+Accept: application/json
+
+
+
+### Create a User (Protected with Auth0 Token)
+POST http://localhost:4000/api/users
+Authorization: Bearer {{api}}
+Content-Type: application/json
+
+{
+  "userId": "auth0|123456789",
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "preferences": [
+    {
+      "category": "Cuisine",
+      "type": "Japanese",
+      "name": "Sushi Momo"
+    }
+  ],
+  "notificationPreference": {
+    "frequency": "Weekends",
+    "customDays": ["Saturday", "Sunday"]
+  },
+  "location": {
+    "lat": 45.5017,
+    "lng": -73.5673
+  }
+}
+
+### Update User Preference
+PATCH http://localhost:4000/api/users/680d9049a78724bcf85c112f
+Authorization: Bearer {{api}}
+Content-Type: application/json
+
+{
+  "preferences": [
+    {
+      "category": "Outdoor",
+      "type": "Hiking",
+      "name": "Mount Royal Trail"
+    }
+  ]
+}
+
+

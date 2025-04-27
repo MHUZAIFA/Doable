@@ -4,15 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-  "build": "tsc",
-  "start": "node dist/index.js"
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
+    "doable-api": "file:",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-oauth2-jwt-bearer": "^1.6.1",
+    "mongoose": "^8.14.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
