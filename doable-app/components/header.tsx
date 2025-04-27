@@ -37,12 +37,12 @@ export function Header() {
       <header className="border-b">
         <div className="container-fluid p-6 flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 transition-all duration-300 hover:scale-105">
-            <MapPin className="h-6 w-6 text-primary" />
+            <MapPin className="h-6 w-6 text-primary fill-blue" />
             <span className="text-xl font-bold">Doable</span>
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="flex items-center gap-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 hover:scale-110">
+              <button className="flex items-center gap-2 rounded-full  focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 hover:scale-110">
                 <Avatar className="border-2 rounded-full border-black">
                   <AvatarImage src="https://framerusercontent.com/images/ILiJVdbpGwcv26LHWlZBFATw0g.jpg" width={40} height={40} alt="User" />
                   <AvatarFallback>

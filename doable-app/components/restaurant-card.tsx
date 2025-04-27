@@ -29,9 +29,10 @@ export function RestaurantCard({ name, image, location, rating, cuisine, priceLe
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <Badge className="absolute top-2 left-2 transition-all duration-300 hover:bg-primary hover:text-primary-foreground">
-            {cuisine}
-          </Badge>
+          <Badge className="absolute top-2 left-2 bg-custom-blue text-white transition-all duration-300 hover:bg-blue-400 hover:text-primary-foreground">
+  {cuisine}
+</Badge>
+
         </div>
         <CardContent className="flex-1 p-4">
           <h3 className="font-semibold text-lg line-clamp-2">{name}</h3>
