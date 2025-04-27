@@ -1,0 +1,36 @@
+@api=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJyT1BLSXdOQTlweGNSTEhfVGR3MiJ9.eyJpc3MiOiJodHRwczovL2Rldi1zdGhnMnJsa3FxbHh4a2V1LmNhLmF1dGgwLmNvbS8iLCJzdWIiOiJkQ1Bqd2FEWXFXWjY0b0tZYURrODRMRXNjRW9mWjJKU0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtc3RoZzJybGtxcWx4eGtldS5jYS5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTc0NTcxOTA1NSwiZXhwIjoxNzQ1ODA1NDU1LCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiJkQ1Bqd2FEWXFXWjY0b0tZYURrODRMRXNjRW9mWjJKUyJ9.hZOGE7prxp6IykSnHDdx3u4O41PAArbui-ISQA1YIiVQvodrP2M6_HgGi9pLBVbnlwbam8JUD3_Lj3vRIY0ncVxoxT1TrGZpMv1GMpq6N9_1dSaCKEZ0TTdzBczwvqJLki5CFLtzg4YSUIoLXdl92Vrz2in7B0u6SaU-4GUxKqDlWmk4RPYh1Uhi7dXbbOVPcEiv_UqhwtBKcsVSGq3KOFV7IL_ZYC3Ll6bNhNZvMg6Z3E7Yhj9gkGdhibW7FiXluJ7hG11bujQSPmTwmD5ZubNn6DtaQtIz3RCdnbvVqBpvScQZeAv2SUpzi-3NNUDByZnzmjvImxXrO2cLcWBjCQ
+POST http://localhost:4000/api/chat/start
+Content-Type: application/json
+Authorization: Bearer {{api}}
+
+{
+  "userId": "auth0|123456789",
+  "filters": {
+    "activityType": "Adventure",
+    "interest": "Nature & Eco-tourism",
+    "budget": "Low-Cost",
+    "duration": "Half-Day",
+    "travelerPreference": "Solo",
+    "timeOfDay": "Morning",
+    "location": "Montreal"
+  }
+}
+
+### Send User Message
+POST http://localhost:4000/api/chat/message
+Content-Type: application/json
+Authorization: Bearer {{api}}
+
+{
+  "userId": "auth0|123456789",
+  "message": "I want something near water and peaceful."
+}
+
+### Finalize Recommendation
+POST http://localhost:4000/api/chat/finalize
+Content-Type: application/json
+Authorization: Bearer {{api}}
+
+{
+  "userId": "auth0|123456789"
+}

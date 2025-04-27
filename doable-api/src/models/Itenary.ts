@@ -1,19 +1,22 @@
+// src/models/Itinerary.ts
 import mongoose from "mongoose";
 
 const itinerarySchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  userId: { type: String, required: true }, // Store userId like "auth0|..."
   activities: [
     {
-      name: String,
-      
-      address: String,
-      lat: Number,
-      lng: Number,
-      type: String, // "Restaurant", "Outdoor Activity", etc.
-      timeSuggested: String,
+      title: { type: String },
+      description: { type: String },
+      address: { type: String },
+      latitude: { type: Number },
+      longitude: { type: Number },
+      type: { type: String },
+      _id: false, // Prevent MongoDB from auto-generating _id inside activities array
     },
   ],
   createdAt: { type: Date, default: Date.now },
 });
 
-export default mongoose.model("Itinerary", itinerarySchema);
+const Itinerary = mongoose.model("Itinerary", itinerarySchema);
+
+export default Itinerary;

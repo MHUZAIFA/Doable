@@ -4,7 +4,8 @@ import dotenv from "dotenv";
 import jwtCheck from "./middleware/auth";
 
 import userRoutes from "./routes/userRoutes";
-import itineraryRoutes from "./routes/itenaryRoutes"; // Uncomment when ready
+import itineraryRoutes from "./routes/itenaryRoutes";
+import chatBotRoutes from "./routes/chatBotRoutes"; // 👈 NEW
 
 dotenv.config();
 
@@ -30,8 +31,9 @@ const connectDB = async () => {
 };
 
 // API Routes
-app.use("/api", jwtCheck, userRoutes);
-app.use("/api", jwtCheck, itineraryRoutes);
+app.use("/api/users", jwtCheck, userRoutes);
+app.use("/api/itenaries", jwtCheck, itineraryRoutes);
+app.use("/api/chat", jwtCheck, chatBotRoutes); // 👈 ADD THIS for chatbot
 
 // Health check route
 app.get("/api/health", (req, res) => {

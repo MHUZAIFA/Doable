@@ -1,15 +1,15 @@
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
-import User from "../models/User"; 
-import Itinerary from "../models/Itenary"; 
+import User from "../models/User";
+import Itinerary from "../models/Itenary";
 
 dotenv.config();
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_KEY });
 
 export interface ItineraryFilters {
-  startDate: string; 
-  endDate: string; 
+  startDate: string;
+  endDate: string;
   location?: string;
   weather?: string;
   travelerPreference?: string;
@@ -25,7 +25,7 @@ function getDateRange(startDateStr: string, endDateStr: string): string[] {
 
   let currentDate = startDate;
   while (currentDate <= endDate) {
-    dates.push(currentDate.toISOString().split('T')[0]); // Keep as YYYY-MM-DD
+    dates.push(currentDate.toISOString().split("T")[0]); // Keep as YYYY-MM-DD
     currentDate.setDate(currentDate.getDate() + 1);
   }
 
@@ -47,7 +47,8 @@ export async function generateItineraryPlan(
       throw new Error("User not found.");
     }
 
-    const preferences = user.preferences && user.preferences.length > 0 ? user.preferences : null;
+    const preferences =
+      user.preferences && user.preferences.length > 0 ? user.preferences : null;
 
     let history: any[] = [];
 
@@ -86,10 +87,32 @@ export async function generateItineraryPlan(
    
     
     Traveler Preferences:
-    ${preferences ? preferences.map((pref, idx) => ` ${idx + 1}. Category: ${pref.category}, Type: ${pref.type}, Name: ${pref.name}`).join("\n") : history.length > 0 ? history.map((item, idx) => `    ${idx + 1}. Name: ${item.name}, Type: ${item.category}, Location: ${item.location}`).join("\n") : " No past history. Recommend popular and trending activities."}
+    ${
+      preferences
+        ? preferences
+            .map(
+              (pref, idx) =>
+                ` ${idx + 1}. Category: ${pref.category}, Type: ${
+                  pref.type
+                }, Name: ${pref.name}`
+            )
+            .join("\n")
+        : history.length > 0
+        ? history
+            .map(
+              (item, idx) =>
+                `    ${idx + 1}. Name: ${item.name}, Type: ${
+                  item.category
+                }, Location: ${item.location}`
+            )
+            .join("\n")
+        : " No past history. Recommend popular and trending activities."
+    }
     
     Instructions:
-    - Build a DAILY itinerary for each day between ${filters.startDate} and ${filters.endDate}.
+    - Build a DAILY itinerary for each day between ${filters.startDate} and ${
+      filters.endDate
+    }.
     - The plan must start around 8:00 AM with breakfast and flow smoothly until about 10:00-11:00 PM.
     - Allocate realistic estimated times for each activity.
     - Take into account:
@@ -135,12 +158,13 @@ export async function generateItineraryPlan(
     
     - ONLY output the clean JSON structure. No extra commentary.
     `;
-    
+
     const response = await ai.models.generateContent({
       model: "gemini-2.0-flash",
       contents: prompt,
       config: {
-        systemInstruction: "You are a professional travel planner AI. Return only clean JSON structured output.",
+        systemInstruction:
+          "You are a professional travel planner AI. Return only clean JSON structured output.",
       },
     });
 
@@ -148,7 +172,10 @@ export async function generateItineraryPlan(
       let rawText: any = response.text?.trim();
 
       if (rawText.startsWith("```json")) {
-        rawText = rawText.replace(/^```json/, "").replace(/```$/, "").trim();
+        rawText = rawText
+          .replace(/^```json/, "")
+          .replace(/```$/, "")
+          .trim();
       } else if (rawText.startsWith("```")) {
         rawText = rawText.replace(/^```/, "").replace(/```$/, "").trim();
       }
@@ -161,9 +188,37 @@ export async function generateItineraryPlan(
       console.error("Failed to parse Gemini response JSON:", error);
       throw new Error("Invalid JSON format received from Gemini");
     }
-
   } catch (error) {
     console.error("Error generating itinerary plan:", error);
+    throw error;
+  }
+}
+
+export async function chatBasedRecommendation(prompt: string) {
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-1.5-pro-latest",
+      contents: prompt,
+      config: {
+        systemInstruction: "Always return clean JSON output. No explanation.",
+      },
+    });
+
+    let rawText: any = response.text?.trim();
+
+    if (rawText.startsWith("```json")) {
+      rawText = rawText
+        .replace(/^```json/, "")
+        .replace(/```$/, "")
+        .trim();
+    } else if (rawText.startsWith("```")) {
+      rawText = rawText.replace(/^```/, "").replace(/```$/, "").trim();
+    }
+
+    const parsed = JSON.parse(rawText);
+    return parsed;
+  } catch (error) {
+    console.error("Error generating chat-based recommendation:", error);
     throw error;
   }
 }
