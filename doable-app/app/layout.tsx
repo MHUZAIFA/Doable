@@ -5,7 +5,6 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { AiAssistant } from "@/components/ai-assistant"
 
 import "./globals.css"
 
@@ -35,7 +34,6 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Header />
           <main>{children}</main>
-          <AiAssistant />
           <Footer />
         </ThemeProvider>
       </body>

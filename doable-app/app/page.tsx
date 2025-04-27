@@ -14,12 +14,14 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { FadeIn } from "@/components/animations/fade-in"
 import { StaggerContainer } from "@/components/animations/stagger-container"
+import { AiAssistant } from "@/components/ai-assistant"
+import { FilterSettings } from "@/components/filter-settings"
 
 // Sample data for activities and restaurants
 const popularActivities = [
   {
     title: "Hiking at Mountain Trail",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Mountain View Park",
     rating: 4.7,
     duration: "3 hours",
@@ -28,7 +30,7 @@ const popularActivities = [
   },
   {
     title: "City Museum Tour",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Downtown",
     rating: 4.5,
     duration: "2 hours",
@@ -37,7 +39,7 @@ const popularActivities = [
   },
   {
     title: "Kayaking Adventure",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Clear Lake",
     rating: 4.8,
     duration: "4 hours",
@@ -46,7 +48,7 @@ const popularActivities = [
   },
   {
     title: "Wine Tasting Tour",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Vineyard Valley",
     rating: 4.6,
     duration: "3 hours",
@@ -55,7 +57,7 @@ const popularActivities = [
   },
   {
     title: "Bicycle City Tour",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "City Center",
     rating: 4.4,
     duration: "2 hours",
@@ -67,7 +69,7 @@ const popularActivities = [
 const indoorActivities = [
   {
     title: "Art Gallery Exhibition",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Modern Art Center",
     rating: 4.3,
     duration: "1.5 hours",
@@ -76,7 +78,7 @@ const indoorActivities = [
   },
   {
     title: "Cooking Class: Italian Cuisine",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Culinary Institute",
     rating: 4.9,
     duration: "3 hours",
@@ -85,7 +87,7 @@ const indoorActivities = [
   },
   {
     title: "Escape Room Challenge",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Puzzle Palace",
     rating: 4.7,
     duration: "1 hour",
@@ -94,7 +96,7 @@ const indoorActivities = [
   },
   {
     title: "Pottery Workshop",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Craft Studio",
     rating: 4.5,
     duration: "2 hours",
@@ -103,7 +105,7 @@ const indoorActivities = [
   },
   {
     title: "Virtual Reality Experience",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Tech Zone",
     rating: 4.8,
     duration: "1 hour",
@@ -115,7 +117,7 @@ const indoorActivities = [
 const outdoorActivities = [
   {
     title: "Zip Line Adventure",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Forest Heights",
     rating: 4.9,
     duration: "2 hours",
@@ -124,7 +126,7 @@ const outdoorActivities = [
   },
   {
     title: "Sunset Beach Yoga",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Sandy Beach",
     rating: 4.6,
     duration: "1 hour",
@@ -133,7 +135,7 @@ const outdoorActivities = [
   },
   {
     title: "Rock Climbing Experience",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Granite Cliffs",
     rating: 4.7,
     duration: "3 hours",
@@ -142,7 +144,7 @@ const outdoorActivities = [
   },
   {
     title: "Botanical Garden Tour",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "City Gardens",
     rating: 4.4,
     duration: "1.5 hours",
@@ -151,7 +153,7 @@ const outdoorActivities = [
   },
   {
     title: "Horseback Riding Trail",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Valley Ranch",
     rating: 4.8,
     duration: "2 hours",
@@ -163,7 +165,7 @@ const outdoorActivities = [
 const restaurants = [
   {
     name: "The Rustic Table",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Downtown",
     rating: 4.7,
     cuisine: "American",
@@ -171,7 +173,7 @@ const restaurants = [
   },
   {
     name: "Sakura Sushi",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Eastside",
     rating: 4.8,
     cuisine: "Japanese",
@@ -179,7 +181,7 @@ const restaurants = [
   },
   {
     name: "Olive & Vine",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "Westside",
     rating: 4.6,
     cuisine: "Mediterranean",
@@ -187,7 +189,7 @@ const restaurants = [
   },
   {
     name: "Spice Route",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "North District",
     rating: 4.5,
     cuisine: "Indian",
@@ -195,7 +197,7 @@ const restaurants = [
   },
   {
     name: "El Mariachi",
-    image: "/placeholder.svg?height=160&width=300",
+    image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
     location: "South Plaza",
     rating: 4.4,
     cuisine: "Mexican",
@@ -211,6 +213,7 @@ export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("")
   const [filterValue, setFilterValue] = useState("all")
   const [isSheetOpen, setIsSheetOpen] = useState(false)
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
 
   // Get time of day for greeting
   const getGreeting = () => {
@@ -227,12 +230,14 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="container py-8 space-y-10">
+    <div className="container-fluid p-6 space-y-10" style={{ overflowY: "auto", height: "calc(100vh - 130px)", paddingBottom: "70px" }}>
       <FadeIn direction="down" duration={600}>
         <div className="space-y-4">
           <h1 className="text-3xl font-bold animate-in slide-in-from-top duration-500">
             {getGreeting()}, {userName}
           </h1>
+
+
           <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -243,17 +248,21 @@ export default function Dashboard() {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <Select value={filterValue} onValueChange={setFilterValue}>
-              <SelectTrigger className="w-full sm:w-[180px] transition-all duration-200 hover:border-primary">
-                <SelectValue placeholder="Filter by" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Activities</SelectItem>
-                <SelectItem value="indoor">Indoor Only</SelectItem>
-                <SelectItem value="outdoor">Outdoor Only</SelectItem>
-                <SelectItem value="restaurants">Restaurants</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="relative">
+              <Button
+              variant="outline"
+              type="button"
+              className="w-full sm:w-[180px] transition-all duration-200 hover:border-primary"
+              onClick={() => setIsFilterOpen(true)}
+              >
+              Filter
+              </Button>
+              {isFilterOpen && (
+              <div className="absolute top-full left-0 mt-2 z-10" style={{ width: "350px" }}>
+                <FilterSettings />
+              </div>
+              )}
+            </div>
             <Button type="submit" className="transition-all duration-300 hover:shadow-md active:scale-95">
               Search
             </Button>
@@ -293,6 +302,9 @@ export default function Dashboard() {
             </div>
           ))}
         </Carousel>
+
+        <AiAssistant isAbsolute={true} />
+
       </StaggerContainer>
 
       {/* Search Results Bottom Sheet */}

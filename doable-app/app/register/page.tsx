@@ -31,9 +31,9 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="container flex items-center justify-center py-12">
+    <div className="container-fluid flex items-center justify-center" style={{ height: "calc(100vh - 130px)" }}>
       <ScaleIn duration={600}>
-        <Card className="w-full max-w-md transition-all duration-300 hover:shadow-lg">
+        <Card className="w-full max-w-md transition-all duration-300 hover:shadow-lg border-0 md:border-1 dark:bg-black">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
             <CardDescription>Enter your information to create an account</CardDescription>
@@ -80,7 +80,7 @@ export default function RegisterPage() {
                 <Separator className="w-full" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
+                <span className="px-2 text-muted-foreground bg-transparent">Or continue with</span>
               </div>
             </div>
             <FadeIn direction="up" delay={200} duration={400}>
@@ -121,6 +121,7 @@ export default function RegisterPage() {
                     id="password"
                     type="password"
                     required
+                    placeholder="********"
                     className="transition-all duration-200 focus-within:ring-2 focus-within:ring-primary/50"
                   />
                 </div>
@@ -142,13 +143,13 @@ export default function RegisterPage() {
             </FadeIn>
           </CardContent>
           <CardFooter>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-muted-foreground flex items-center justify-between">
               Already have an account?{" "}
               <Link
-                href="/sign-in"
-                className="font-medium text-primary underline-offset-4 hover:underline transition-all duration-200"
+                href="/login"
+                className="font-medium text-primary underline-offset-4 hover:underline transition-all duration-200 ml-1"
               >
-                Sign in
+                Login
               </Link>
             </div>
           </CardFooter>

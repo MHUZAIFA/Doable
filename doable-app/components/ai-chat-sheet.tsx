@@ -185,7 +185,7 @@ export function AiChatSheet({ isOpen, onOpenChange, initialQuery }: AiChatSheetP
         </ScrollArea>
 
         <div className="border-t p-4">
-          <form onSubmit={handleSubmit} className="flex gap-2">
+          <form onSubmit={handleSubmit}>
             <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}

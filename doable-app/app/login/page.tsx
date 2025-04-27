@@ -31,9 +31,9 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="container flex items-center justify-center py-12">
+    <div className="container-fluid flex items-center justify-center" style={{ height: "calc(100vh - 130px)" }}>
       <ScaleIn duration={600}>
-        <Card className="w-full max-w-md transition-all duration-300 hover:shadow-lg">
+        <Card className="w-full max-w-md transition-all duration-300 hover:shadow-lg border-0 md:border-2 dark:bg-black">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold">Sign in</CardTitle>
             <CardDescription>Enter your email and password to sign in to your account</CardDescription>
@@ -80,7 +80,7 @@ export default function SignInPage() {
                 <Separator className="w-full" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
+                <span className="px-2 text-muted-foreground">Or continue with</span>
               </div>
             </div>
             <FadeIn direction="up" delay={200} duration={400}>
@@ -109,6 +109,7 @@ export default function SignInPage() {
                     id="password"
                     type="password"
                     required
+                    placeholder="********"
                     className="transition-all duration-200 focus-within:ring-2 focus-within:ring-primary/50"
                   />
                 </div>
@@ -120,21 +121,21 @@ export default function SignInPage() {
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Signing in...
+                      Logging in...
                     </>
                   ) : (
-                    "Sign in"
+                    "Login"
                   )}
                 </Button>
               </form>
             </FadeIn>
           </CardContent>
           <CardFooter>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-muted-foreground flex items-center justify-center">
               Don&apos;t have an account?{" "}
               <Link
                 href="/register"
-                className="font-medium text-primary underline-offset-4 hover:underline transition-all duration-200"
+                className="font-medium text-primary underline-offset-4 hover:underline transition-all duration-200 ml-1"
               >
                 Register
               </Link>
