@@ -1,0 +1,61 @@
+@api=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJyT1BLSXdOQTlweGNSTEhfVGR3MiJ9.eyJpc3MiOiJodHRwczovL2Rldi1zdGhnMnJsa3FxbHh4a2V1LmNhLmF1dGgwLmNvbS8iLCJzdWIiOiJkQ1Bqd2FEWXFXWjY0b0tZYURrODRMRXNjRW9mWjJKU0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtc3RoZzJybGtxcWx4eGtldS5jYS5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTc0NTcxOTA1NSwiZXhwIjoxNzQ1ODA1NDU1LCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiJkQ1Bqd2FEWXFXWjY0b0tZYURrODRMRXNjRW9mWjJKUyJ9.hZOGE7prxp6IykSnHDdx3u4O41PAArbui-ISQA1YIiVQvodrP2M6_HgGi9pLBVbnlwbam8JUD3_Lj3vRIY0ncVxoxT1TrGZpMv1GMpq6N9_1dSaCKEZ0TTdzBczwvqJLki5CFLtzg4YSUIoLXdl92Vrz2in7B0u6SaU-4GUxKqDlWmk4RPYh1Uhi7dXbbOVPcEiv_UqhwtBKcsVSGq3KOFV7IL_ZYC3Ll6bNhNZvMg6Z3E7Yhj9gkGdhibW7FiXluJ7hG11bujQSPmTwmD5ZubNn6DtaQtIz3RCdnbvVqBpvScQZeAv2SUpzi-3NNUDByZnzmjvImxXrO2cLcWBjCQ
+
+### Generate Multi-Day Itinerary
+POST http://localhost:4000/api/itenaries/generate-itinerary
+Content-Type: application/json
+Authorization: Bearer {{api}}
+
+{
+  "userId": "auth0|123456789",
+  "filters": {
+    "startDate": "2025-05-01",
+    "endDate": "2025-05-02",
+    "location": "Montreal",
+    "weather": "Sunny",
+    "budget": "Low-Cost",
+    "travelerPreference": "Couple",
+    "accessibility": "Pet-Friendly"
+  }
+}
+### Create New Itinerary
+### Create New Itinerary
+POST http://localhost:4000/api/itenaries/create
+Authorization: Bearer {{api}}
+Content-Type: application/json
+
+{
+  "userId": "auth0|123456789",
+  "activities": [
+    {
+      "title": "Morning at Mount Royal",
+      "description": "A scenic walk around Mount Royal Park with city views.",
+      "address": "Mount Royal, Montreal, QC",
+      "latitude": 45.5048,
+      "longitude": -73.5878,
+      "type": "Outdoor"
+    }
+  ]
+}
+
+
+# {
+#   "userId": "auth0|123456789",
+#   "filters": {
+#     "startDate": "2025-05-01",
+#     "endDate": "2025-05-05",
+#     "location": "Montreal",
+#     "weather": "Sunny",
+#     "activityType": "Outdoor",
+#     "interest": "Nature & Eco-tourism",
+#     "levelOfActivity": "Moderate",
+#     "budget": "Low-Cost",
+#     "travelerPreference": "Couple",
+#     "accessibility": "Pet-Friendly",
+#     "distance": "Walking Distance",
+#     "popularity": "Trending",
+#     "specialInterest": "Photography Hotspots",
+#     "likesBarOrClub": true
+#   }
+
+
+
