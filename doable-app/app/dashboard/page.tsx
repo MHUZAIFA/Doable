@@ -283,73 +283,43 @@ export default function Dashboard() {
                     </div>
                 </div>
 
-                <div className="space-y-4">
-                    <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4">
-                        <div className="relative flex-1">
-                            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                            <Input
-                                placeholder="Search activities, restaurants, locations..."
-                                className="pl-10 transition-all duration-200 focus-within:ring-2 focus-within:ring-primary/50"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
-                        </div>
-                        <div className="relative">
-                            <Button
-                                variant="outline"
-                                type="button"
-                                className="w-full sm:w-[180px] transition-all duration-200 hover:border-primary"
-                                onClick={() => setIsFilterOpen(true)}
-                            >
-                                Filter
-                            </Button>
-                            {isFilterOpen && (
-                                <div className="absolute top-full right-0 mt-2" style={{ width: "350px", zIndex: 1000 }}>
-                                    <FilterSettings onClose={() => setIsFilterOpen(false)} />
-                                </div>
-                            )}
-                        </div>
-                        <Button type="submit" className="transition-all duration-300 hover:shadow-md active:scale-95">
-                            Search
+                <div className="flex">
+                    <div className="relative flex-1">
+                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Input
+                            placeholder="Search activities..."
+                            className="pl-10 transition-all duration-200 focus-within:ring-2 focus-within:ring-primary/50"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </div>
+                    <div className="relative ml-2">
+                        <Button
+                            variant="outline"
+                            type="button"
+                            className="w-full sm:w-[90px] transition-all duration-200 hover:border-primary"
+                            onClick={() => setIsFilterOpen(!isFilterOpen)}
+                        >
+                            Filter
                         </Button>
-                    </form>
+                        {isFilterOpen && (
+                            <div className="absolute top-full right-0 mt-2" style={{ width: "350px", zIndex: 1000 }}>
+                                <FilterSettings onClose={() => setIsFilterOpen(false)} />
+                            </div>
+                        )}
+                    </div>
                 </div>
             </FadeIn>
 
             <StaggerContainer staggerDelay={200}>
                 {/* Carousel Render */}
-                <Carousel title="Popular Activities Nearby">
+                <Carousel title="Upcoming Trips">
                     {filterData(popularActivities).map((activity, index: React.Key | null | undefined) => (
                         <div key={index} className="snap-start">
                             <ActivityCard {...activity} index={index} />
                         </div>
                     ))}
                 </Carousel>
-
-                <Carousel title="Popular Indoor Activities">
-                    {filterData(indoorActivities).map((activity, index: React.Key | null | undefined) => (
-                        <div key={index} className="snap-start">
-                            <ActivityCard {...activity} index={index} />
-                        </div>
-                    ))}
-                </Carousel>
-
-                <Carousel title="Popular Outdoor Activities">
-                    {filterData(outdoorActivities).map((activity, index: React.Key | null | undefined) => (
-                        <div key={index} className="snap-start">
-                            <ActivityCard {...activity} index={index} />
-                        </div>
-                    ))}
-                </Carousel>
-
-                <Carousel title="Popular Restaurants Nearby">
-                    {filterData(restaurants).map((restaurant, index: React.Key | null | undefined) => (
-                        <div key={index} className="snap-start">
-                            <RestaurantCard {...restaurant} index={index} />
-                        </div>
-                    ))}
-                </Carousel>
-
                 <AiAssistant isAbsolute={true} />
             </StaggerContainer>
 

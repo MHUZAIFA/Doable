@@ -25,7 +25,7 @@ export function RestaurantCard({ name, image, location, rating, cuisine, priceLe
         <div className="relative h-40 overflow-hidden group">
           <Image
             src={image || "/placeholder.svg"}
-            alt={name}
+            alt={name || "Restaurant Image"}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
