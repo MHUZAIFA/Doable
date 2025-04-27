@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/animations/fade-in"
 import { StaggerContainer } from "@/components/animations/stagger-container"
+import { AiAssistant } from "./ai-assistant"
 
 interface SearchResultsSheetProps {
   isOpen: boolean
@@ -99,24 +100,6 @@ export function SearchResultsSheet({ isOpen, onOpenChange, searchQuery, onSearch
             <SheetTitle>Itinerary Results</SheetTitle>
           </div>
         </SheetHeader>
-
-        <SheetDescription>
-          Based on your search for <span className="font-medium">"{searchQuery}"</span>
-        </SheetDescription>
-        <form onSubmit={handleSearch} className="flex gap-2 mt-2">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search activities, restaurants, locations..."
-              className="pl-10"
-            />
-          </div>
-          <Button type="submit" className="transition-all duration-200">
-            Search
-          </Button>
-        </form>
 
         <FadeIn direction="up" duration={500}>
           <div className="mt-6 space-y-2 d-flex" style={{ maxHeight: "70vh", overflowY: "auto", paddingRight: "1rem" }}>
@@ -242,6 +225,8 @@ export function SearchResultsSheet({ isOpen, onOpenChange, searchQuery, onSearch
               </div>
             </StaggerContainer>
           </div>
+
+          <AiAssistant isAbsolute={false} />
         </FadeIn>
       </SheetContent>
     </Sheet>
