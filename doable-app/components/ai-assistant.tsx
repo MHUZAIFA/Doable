@@ -99,8 +99,6 @@ export function AiAssistant({ isAbsolute = false }: AiAssistantProps) {
       <SearchResultsSheet
         isOpen={isSheetOpen}
         onOpenChange={setIsSheetOpen}
-        searchQuery={query}
-        onSearchChange={handleSearchChange}
       />
     </>
   )

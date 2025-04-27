@@ -82,8 +82,7 @@ export default function Dashboard() {
     // State for search, filter, and bottom sheet
     const [searchQuery, setSearchQuery] = useState("")
     const [filterValue, setFilterValue] = useState("all")
-    const [isSheetOpen, setIsSheetOpen] = useState(false)
-    const [isFilterOpen, setIsFilterOpen] = useState(false)
+    const [isSeachResultOpen, setIsSeachResultOpen] = useState(false)
     const [isPreferenceModalOpen, setIsPreferenceModalOpen] = useState(false)
     const [isTripsModalOpen, setIsTripsModalOpen] = useState(false)
     const [isFavModalOpen, setIsFavModalOpen] = useState(false)
@@ -113,16 +112,15 @@ export default function Dashboard() {
         })
     }
 
-    const handleSearch = (e: React.FormEvent) => {
-        e.preventDefault()
-        setIsSheetOpen(true)
+    const handleApplyFilter = (e: React.FormEvent) => {
+        setIsSeachResultOpen(true)
     }
 
     return (
-        <div className="container-fluid p-6 space-y-10" style={{ overflowY: "auto", height: "calc(100vh - 130px)", paddingBottom: "70px" }}>
+        <div className="container-fluid p-6 space-y-4" style={{ overflowY: "auto", height: "calc(100vh - 130px)", paddingBottom: "70px" }}>
             <FadeIn direction="down" duration={600}>
-                <div className="mb-14">
-                    <h1 className="text-3xl font-bold animate-in slide-in-from-top duration-500 mb-4">
+                <div className="mb-10">
+                    <h1 className="text-3xl font-bold animate-in slide-in-from-top duration-500 mb-6">
                         {getGreeting()}, {userName}
                     </h1>
 
@@ -149,34 +147,46 @@ export default function Dashboard() {
                         </Card>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
-                        <Card className="p-6 shadow-lg rounded-lg flex items-center space-x-4" onClick={() => setIsTripsModalOpen(true)}>
-                            <div className="bg-green-500 text-white p-3 rounded-full">
-                            <PlaneTakeoff />
+                    <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 md:gap-6 mt-4">
+                        <Card
+                            className="px-2 md:px-6 py-4 shadow-lg rounded-lg flex items-center md:space-x-4 justify-center transition-transform duration-200 hover:scale-105"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => setIsTripsModalOpen(true)}
+                        >
+                            <div className="bg-green-500 text-white p-3 rounded-full hidden md:flex">
+                                <PlaneTakeoff />
                             </div>
                             <div>
-                                <p className="text-xl font-bold">Trips</p>
-                                <p className="text-sm text-muted-foreground">Manage your trips</p>
+                                <p className="text-sm md:text-xl font-bold">Trips</p>
+                                <p className="text-sm text-muted-foreground hidden md:flex">Manage your trips</p>
                             </div>
                         </Card>
 
-                        <Card className="p-6 shadow-lg rounded-lg flex items-center space-x-4" onClick={() => setIsPreferenceModalOpen(true)}>
-                            <div className="bg-orange-500 text-white p-3 rounded-full">
-                            <Settings2 />
+                        <Card
+                            className="px-2 md:px-6 py-4 shadow-lg rounded-lg flex items-center md:space-x-4 justify-center transition-transform duration-200 hover:scale-105"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => setIsPreferenceModalOpen(true)}
+                        >
+                            <div className="bg-orange-500 text-white p-3 rounded-full hidden md:flex">
+                                <Settings2 />
                             </div>
                             <div>
-                                <p className="text-xl font-bold">Preferences</p>
-                                <p className="text-sm text-muted-foreground">Set your preferences</p>
+                                <p className="text-sm md:text-xl font-bold">Preferences</p>
+                                <p className="text-sm text-muted-foreground hidden md:flex">Set your preferences</p>
                             </div>
                         </Card>
 
-                        <Card className="p-6 shadow-lg rounded-lg flex items-center space-x-4" onClick={() => setIsFavModalOpen(true)}>
-                            <div className="bg-purple-500 text-white p-3 rounded-full">
-                            <Heart />
+                        <Card
+                            className="px-2 md:px-6 py-4 shadow-lg rounded-lg flex items-center md:space-x-4 justify-center transition-transform duration-200 hover:scale-105"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => setIsFavModalOpen(true)}
+                        >
+                            <div className="bg-purple-500 text-white p-3 rounded-full hidden md:flex">
+                                <Heart />
                             </div>
                             <div>
-                                <p className="text-xl font-bold">Favourites</p>
-                                <p className="text-sm text-muted-foreground">Adjust your settings</p>
+                                <p className="text-sm md:text-xl font-bold">Favourites</p>
+                                <p className="text-sm text-muted-foreground hidden md:flex">Adjust your settings</p>
                             </div>
                         </Card>
                     </div>
@@ -197,13 +207,13 @@ export default function Dashboard() {
                             variant="outline"
                             type="button"
                             className="w-full sm:w-[90px] transition-all duration-200 hover:border-primary"
-                            onClick={() => setIsFilterOpen(!isFilterOpen)}
+                            onClick={() => setIsSeachResultOpen(!isSeachResultOpen)}
                         >
                             Filter
                         </Button>
-                        {isFilterOpen && (
+                        {isSeachResultOpen && (
                             <div className="absolute top-full right-0 mt-2" style={{ width: "350px", zIndex: 1000 }}>
-                                <FilterSettings onClose={() => setIsFilterOpen(false)} />
+                                <FilterSettings onClose={() => setIsSeachResultOpen(false)} applyFilter={() => handleApplyFilter}  />
                             </div>
                         )}
                     </div>
@@ -222,12 +232,9 @@ export default function Dashboard() {
                 <AiAssistant isAbsolute={true} />
             </StaggerContainer>
 
-            {/* Search Results Bottom Sheet */}
             <SearchResultsSheet
-                isOpen={isSheetOpen}
-                onOpenChange={setIsSheetOpen}
-                searchQuery={searchQuery}
-                onSearchChange={setSearchQuery}
+                isOpen={isSeachResultOpen}
+                onOpenChange={setIsSeachResultOpen}
             />
 
             <PreferenceQuestionnaire open={isPreferenceModalOpen} onOpenChange={setIsPreferenceModalOpen} />

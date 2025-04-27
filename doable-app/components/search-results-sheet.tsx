@@ -17,18 +17,9 @@ import { AiAssistant } from "./ai-assistant"
 interface SearchResultsSheetProps {
   isOpen: boolean
   onOpenChange: (open: boolean) => void
-  searchQuery: string
-  onSearchChange: (query: string) => void
 }
 
-export function SearchResultsSheet({ isOpen, onOpenChange, searchQuery, onSearchChange }: SearchResultsSheetProps) {
-  const [query, setQuery] = useState(searchQuery)
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSearchChange(query)
-  }
-
+export function SearchResultsSheet({ isOpen, onOpenChange }: SearchResultsSheetProps) {
   // Mock itinerary data - in a real app, this would come from an API
   const itinerarySteps = [
     {
