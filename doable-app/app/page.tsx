@@ -227,12 +227,14 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="container py-8 space-y-10">
+    <div className="container-fluid p-6 space-y-10" style={{ overflowY: "auto", height: "calc(100vh - 130px)", paddingBottom: "70px" }}>
       <FadeIn direction="down" duration={600}>
         <div className="space-y-4">
           <h1 className="text-3xl font-bold animate-in slide-in-from-top duration-500">
             {getGreeting()}, {userName}
           </h1>
+
+
           <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />

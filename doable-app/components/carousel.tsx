@@ -29,7 +29,7 @@ export function Carousel({ title, children }: CarouselProps) {
     <FadeIn direction="up" duration={600}>
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold">{title}</h2>
+          <h2 className="text-xl md:text-2xl font-semibold">{title}</h2>
           <div className="flex gap-2">
             <Button
               variant="outline"
