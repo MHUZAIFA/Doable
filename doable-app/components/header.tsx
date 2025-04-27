@@ -47,7 +47,7 @@ export function Header() {
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="flex items-center gap-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 hover:scale-110">
+              <button className="flex items-center gap-2 rounded-full  focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 hover:scale-110">
                 <Avatar className="border-2 rounded-full border-black">
                   <AvatarImage src="https://framerusercontent.com/images/ILiJVdbpGwcv26LHWlZBFATw0g.jpg" width={40} height={40} alt="User" />
                   <AvatarFallback>
