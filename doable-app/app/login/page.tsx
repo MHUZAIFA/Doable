@@ -15,7 +15,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { FadeIn } from "@/components/animations/fade-in"
 import { ScaleIn } from "@/components/animations/scale-in"
 
-export default function SignInPage() {
+export default function LogInPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -26,7 +26,7 @@ export default function SignInPage() {
     // Simulate authentication
     setTimeout(() => {
       setIsLoading(false)
-      router.push("/")
+      router.push("/dashboard")
     }, 1500)
   }
 
