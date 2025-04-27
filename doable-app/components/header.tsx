@@ -71,7 +71,7 @@ export function Header() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild className="transition-colors duration-200 hover:bg-primary/10">
-                <Link href="/settings">
+                <Link href="/">
                   <LockKeyhole className="mr-2 h-4 w-4" />
                   <span>Logout</span>
                 </Link>

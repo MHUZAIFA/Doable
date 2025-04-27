@@ -7,6 +7,10 @@ import userRoutes from "./routes/userRoutes";
 import itineraryRoutes from "./routes/itenaryRoutes";
 import chatBotRoutes from "./routes/chatBotRoutes"; // 👈 NEW
 
+const passport = require('passport');
+const session = require('express-session');
+const Auth0Strategy = require('passport-auth0');
+
 dotenv.config();
 
 // Initialize express app
@@ -14,6 +18,48 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+
+// Configure session
+app.use(session({
+  secret: 'your-session-secret',
+  resave: false,
+  saveUninitialized: true
+}));
+
+// Set up Passport
+passport.use(new Auth0Strategy({
+  domain: 'YOUR_AUTH0_DOMAIN',  // example: 'dev-abc123.auth0.com'
+  clientID: 'YOUR_AUTH0_CLIENT_ID',
+  clientSecret: 'YOUR_AUTH0_CLIENT_SECRET',
+  callbackURL: 'http://localhost:3000/callback'  // This should match the callback URL you set in the Auth0 dashboard
+}, (accessToken: any, refreshToken: any, extraParams: any, profile: any, done: (arg0: null, arg1: any) => any) => {
+  // Here, you can save user data to a session or database
+  return done(null, profile);
+}));
+
+passport.serializeUser((user: any, done: (arg0: null, arg1: any) => void) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user: any, done: (arg0: null, arg1: any) => void) => {
+  done(null, user);
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Route for login
+app.get('/login', passport.authenticate('auth0', {
+  scope: 'openid profile email'
+}));
+
+// Callback route
+app.get('/callback', passport.authenticate('auth0', {
+  failureRedirect: '/'
+}), (req, res) => {
+  // Redirect the user after login
+  res.redirect('/');
+});
 
 // Connect to MongoDB
 const connectDB = async () => {
