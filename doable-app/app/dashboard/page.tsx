@@ -81,7 +81,7 @@ export default function Dashboard() {
 
     // State for search, filter, and bottom sheet
     const [searchQuery, setSearchQuery] = useState("")
-    const [filterValue, setFilterValue] = useState("all")
+    const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [isSeachResultOpen, setIsSeachResultOpen] = useState(false)
     const [isPreferenceModalOpen, setIsPreferenceModalOpen] = useState(false)
     const [isTripsModalOpen, setIsTripsModalOpen] = useState(false)
@@ -101,18 +101,12 @@ export default function Dashboard() {
             const matchesSearchQuery =
                 item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 item.location.toLowerCase().includes(searchQuery.toLowerCase())
-
-            const matchesFilter =
-                filterValue === "all" ||
-                (filterValue === "indoor" && item.type === "Indoor") ||
-                (filterValue === "outdoor" && item.type === "Outdoor") ||
-                (filterValue === "restaurants" && item.cuisine) // For restaurants filter if needed
-
-            return matchesSearchQuery && matchesFilter
+            return matchesSearchQuery;
         })
     }
 
-    const handleApplyFilter = (e: React.FormEvent) => {
+    const handleApplyFilter = () => {
+        setIsFilterOpen(false);
         setIsSeachResultOpen(true)
     }
 
@@ -207,13 +201,13 @@ export default function Dashboard() {
                             variant="outline"
                             type="button"
                             className="w-full sm:w-[90px] transition-all duration-200 hover:border-primary"
-                            onClick={() => setIsSeachResultOpen(!isSeachResultOpen)}
+                            onClick={() => setIsFilterOpen(!isFilterOpen)}
                         >
                             Filter
                         </Button>
-                        {isSeachResultOpen && (
+                        {isFilterOpen && (
                             <div className="absolute top-full right-0 mt-2" style={{ width: "350px", zIndex: 1000 }}>
-                                <FilterSettings onClose={() => setIsSeachResultOpen(false)} applyFilter={() => handleApplyFilter}  />
+                                <FilterSettings onClose={() => setIsFilterOpen(false)} applyFilter={() => handleApplyFilter()}  />
                             </div>
                         )}
                     </div>
