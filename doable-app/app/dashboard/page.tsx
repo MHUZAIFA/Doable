@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Search } from "lucide-react"
 
@@ -11,11 +10,11 @@ import { RestaurantCard } from "@/components/restaurant-card"
 import { SearchResultsSheet } from "@/components/search-results-sheet"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { FadeIn } from "@/components/animations/fade-in"
 import { StaggerContainer } from "@/components/animations/stagger-container"
 import { AiAssistant } from "@/components/ai-assistant"
 import { FilterSettings } from "@/components/filter-settings"
+import { Card } from "@/components/ui/card"
 
 // Sample data for activities and restaurants
 const popularActivities = [
@@ -24,7 +23,7 @@ const popularActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Mountain View Park",
         rating: 4.7,
-        duration: "3 hours",
+        duration: "3 hrs",
         price: "$25 per person",
         type: "Outdoor",
     },
@@ -33,7 +32,7 @@ const popularActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Downtown",
         rating: 4.5,
-        duration: "2 hours",
+        duration: "2 hrs",
         price: "$15 per person",
         type: "Indoor",
     },
@@ -42,7 +41,7 @@ const popularActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Clear Lake",
         rating: 4.8,
-        duration: "4 hours",
+        duration: "4 hrs",
         price: "$40 per person",
         type: "Outdoor",
     },
@@ -51,7 +50,7 @@ const popularActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Vineyard Valley",
         rating: 4.6,
-        duration: "3 hours",
+        duration: "3 hrs",
         price: "$35 per person",
         type: "Indoor",
     },
@@ -60,7 +59,7 @@ const popularActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "City Center",
         rating: 4.4,
-        duration: "2 hours",
+        duration: "2 hrs",
         price: "$20 per person",
         type: "Outdoor",
     },
@@ -72,7 +71,7 @@ const indoorActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Modern Art Center",
         rating: 4.3,
-        duration: "1.5 hours",
+        duration: "1.5 hrs",
         price: "$12 per person",
         type: "Indoor",
     },
@@ -81,7 +80,7 @@ const indoorActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Culinary Institute",
         rating: 4.9,
-        duration: "3 hours",
+        duration: "3 hrs",
         price: "$65 per person",
         type: "Indoor",
     },
@@ -99,7 +98,7 @@ const indoorActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Craft Studio",
         rating: 4.5,
-        duration: "2 hours",
+        duration: "2 hrs",
         price: "$30 per person",
         type: "Indoor",
     },
@@ -120,7 +119,7 @@ const outdoorActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Forest Heights",
         rating: 4.9,
-        duration: "2 hours",
+        duration: "2 hrs",
         price: "$45 per person",
         type: "Outdoor",
     },
@@ -138,7 +137,7 @@ const outdoorActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Granite Cliffs",
         rating: 4.7,
-        duration: "3 hours",
+        duration: "3 hrs",
         price: "$50 per person",
         type: "Outdoor",
     },
@@ -147,7 +146,7 @@ const outdoorActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "City Gardens",
         rating: 4.4,
-        duration: "1.5 hours",
+        duration: "1.5 hrs",
         price: "$10 per person",
         type: "Outdoor",
     },
@@ -156,7 +155,7 @@ const outdoorActivities = [
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Valley Ranch",
         rating: 4.8,
-        duration: "2 hours",
+        duration: "2 hrs",
         price: "$60 per person",
         type: "Outdoor",
     },
@@ -164,7 +163,7 @@ const outdoorActivities = [
 
 const restaurants = [
     {
-        name: "The Rustic Table",
+        title: "The Rustic Table",
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Downtown",
         rating: 4.7,
@@ -172,7 +171,7 @@ const restaurants = [
         priceLevel: "$$$",
     },
     {
-        name: "Sakura Sushi",
+        title: "Sakura Sushi",
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Eastside",
         rating: 4.8,
@@ -180,7 +179,7 @@ const restaurants = [
         priceLevel: "$$",
     },
     {
-        name: "Olive & Vine",
+        title: "Olive & Vine",
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "Westside",
         rating: 4.6,
@@ -188,7 +187,7 @@ const restaurants = [
         priceLevel: "$$",
     },
     {
-        name: "Spice Route",
+        title: "Spice Route",
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "North District",
         rating: 4.5,
@@ -196,7 +195,7 @@ const restaurants = [
         priceLevel: "$$",
     },
     {
-        name: "El Mariachi",
+        title: "El Mariachi",
         image: "https://images.tastet.ca/_/rs:fit:1080:720:false:0/plain/local:///2024/01/oncle-lee-restaurant-chinois-laurier-ouest-8.jpg@jpg",
         location: "South Plaza",
         rating: 4.4,
@@ -206,10 +205,17 @@ const restaurants = [
 ]
 
 export default function Dashboard() {
-    // Get user's first name (would come from auth in a real app)
+    // Get user's first title (would come from auth in a real app)
     const userName = "Alex"
 
-    // State for search and bottom sheet
+    const stats = {
+        totalTrips: 120,
+        avgTripDuration: "3.5 hrs",
+        longestTripDuration: "8 hrs",
+        uniqueDestinations: 45
+    }
+
+    // State for search, filter, and bottom sheet
     const [searchQuery, setSearchQuery] = useState("")
     const [filterValue, setFilterValue] = useState("all")
     const [isSheetOpen, setIsSheetOpen] = useState(false)
@@ -223,21 +229,61 @@ export default function Dashboard() {
         return "Good evening"
     }
 
+    // Function to filter data based on search and filter value
+    const filterData = (data: any[]) => {
+        return data.filter((item: { title: string; location: string; type: string; cuisine: any }) => {
+            const matchesSearchQuery =
+                item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                item.location.toLowerCase().includes(searchQuery.toLowerCase())
+
+            const matchesFilter =
+                filterValue === "all" ||
+                (filterValue === "indoor" && item.type === "Indoor") ||
+                (filterValue === "outdoor" && item.type === "Outdoor") ||
+                (filterValue === "restaurants" && item.cuisine) // For restaurants filter if needed
+
+            return matchesSearchQuery && matchesFilter
+        })
+    }
+
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
-        // Open the bottom sheet with search results
         setIsSheetOpen(true)
     }
 
     return (
         <div className="container-fluid p-6 space-y-10" style={{ overflowY: "auto", height: "calc(100vh - 130px)", paddingBottom: "70px" }}>
             <FadeIn direction="down" duration={600}>
-                <div className="space-y-4">
-                    <h1 className="text-3xl font-bold animate-in slide-in-from-top duration-500">
+                <div className="mb-14">
+                    <h1 className="text-3xl font-bold animate-in slide-in-from-top duration-500 mb-4">
                         {getGreeting()}, {userName}
                     </h1>
 
+                    {/* Stats Cards */}
+                    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <Card className="p-6 shadow-lg rounded-lg">
+                            <p className="text-3xl font-bold">{stats.totalTrips}</p>
+                            <h3 className="text-sm mt-2 font-semibold">Trips</h3>
+                        </Card>
 
+                        <Card className="p-6 shadow-lg rounded-lg">
+                            <p className="text-3xl font-bold">{stats.avgTripDuration}</p>
+                            <h3 className="text-sm mt-2 font-semibold">Avg Duration</h3>
+                        </Card>
+
+                        <Card className="p-6 shadow-lg rounded-lg">
+                            <p className="text-3xl font-bold">{stats.longestTripDuration}</p>
+                            <h3 className="text-sm mt-2 font-semibold">Longest Duration</h3>
+                        </Card>
+
+                        <Card className="p-6 shadow-lg rounded-lg">
+                            <p className="text-3xl font-bold">{stats.uniqueDestinations}</p>
+                            <h3 className="text-sm mt-2 font-semibold">Destinations</h3>
+                        </Card>
+                    </div>
+                </div>
+
+                <div className="space-y-4">
                     <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4">
                         <div className="relative flex-1">
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -258,8 +304,8 @@ export default function Dashboard() {
                                 Filter
                             </Button>
                             {isFilterOpen && (
-                                <div className="absolute top-full left-0 mt-2 z-10" style={{ width: "350px" }}>
-                                    <FilterSettings />
+                                <div className="absolute top-full right-0 mt-2" style={{ width: "350px", zIndex: 1000 }}>
+                                    <FilterSettings onClose={() => setIsFilterOpen(false)} />
                                 </div>
                             )}
                         </div>
@@ -271,8 +317,9 @@ export default function Dashboard() {
             </FadeIn>
 
             <StaggerContainer staggerDelay={200}>
+                {/* Carousel Render */}
                 <Carousel title="Popular Activities Nearby">
-                    {popularActivities.map((activity, index) => (
+                    {filterData(popularActivities).map((activity, index: React.Key | null | undefined) => (
                         <div key={index} className="snap-start">
                             <ActivityCard {...activity} index={index} />
                         </div>
@@ -280,7 +327,7 @@ export default function Dashboard() {
                 </Carousel>
 
                 <Carousel title="Popular Indoor Activities">
-                    {indoorActivities.map((activity, index) => (
+                    {filterData(indoorActivities).map((activity, index: React.Key | null | undefined) => (
                         <div key={index} className="snap-start">
                             <ActivityCard {...activity} index={index} />
                         </div>
@@ -288,7 +335,7 @@ export default function Dashboard() {
                 </Carousel>
 
                 <Carousel title="Popular Outdoor Activities">
-                    {outdoorActivities.map((activity, index) => (
+                    {filterData(outdoorActivities).map((activity, index: React.Key | null | undefined) => (
                         <div key={index} className="snap-start">
                             <ActivityCard {...activity} index={index} />
                         </div>
@@ -296,7 +343,7 @@ export default function Dashboard() {
                 </Carousel>
 
                 <Carousel title="Popular Restaurants Nearby">
-                    {restaurants.map((restaurant, index) => (
+                    {filterData(restaurants).map((restaurant, index: React.Key | null | undefined) => (
                         <div key={index} className="snap-start">
                             <RestaurantCard {...restaurant} index={index} />
                         </div>
@@ -304,7 +351,6 @@ export default function Dashboard() {
                 </Carousel>
 
                 <AiAssistant isAbsolute={true} />
-
             </StaggerContainer>
 
             {/* Search Results Bottom Sheet */}

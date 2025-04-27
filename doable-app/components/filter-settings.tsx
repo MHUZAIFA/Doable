@@ -12,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Slider } from "@/components/ui/slider"
 import { toast } from "@/hooks/use-toast"
 
-export function FilterSettings() {
+export function FilterSettings({ onClose }: { onClose: () => void }) {
     const [isSaving, setIsSaving] = useState(false)
     const [budget, setBudget] = useState([50])
 
@@ -21,10 +21,7 @@ export function FilterSettings() {
         // Simulate saving
         setTimeout(() => {
             setIsSaving(false)
-            toast({
-                title: "Filter settings saved",
-                description: "Your filter preferences have been updated.",
-            })
+            onClose()
         }, 1000)
     }
 
@@ -342,7 +339,7 @@ export function FilterSettings() {
             </CardContent>
             <CardFooter className="flex justify-end">
                 <Button
-                    onClick={() => {}}
+                    onClick={() => {onClose();}}
                     
                     variant="outline"
                     className="transition-all duration-300 hover:shadow-md active:scale-95 mr-3"

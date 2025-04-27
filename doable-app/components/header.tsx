@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 import { MapPin, Settings, User, LockKeyhole } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -37,8 +38,12 @@ export function Header() {
       <header className="border-b">
         <div className="container-fluid p-6 flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 transition-all duration-300 hover:scale-105">
-            <MapPin className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">Doable</span>
+            <Image
+              src="assets/imgs/Doable_Logo.png"
+              alt="Doable"
+              width={100}
+              height={40}
+            />
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

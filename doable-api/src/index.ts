@@ -28,9 +28,9 @@ app.use(session({
 
 // Set up Passport
 passport.use(new Auth0Strategy({
-  domain: 'YOUR_AUTH0_DOMAIN',  // example: 'dev-abc123.auth0.com'
-  clientID: 'YOUR_AUTH0_CLIENT_ID',
-  clientSecret: 'YOUR_AUTH0_CLIENT_SECRET',
+  domain: 'dev-r582yi3dsehcz4as.us.auth0.com',  // example: 'dev-abc123.auth0.com'
+  clientID: 'H30bVSsgUkN29unMHJeffmqe7fjOIJCN',
+  clientSecret: '-a5lC99bQobri0GR5oxnKTHzaW3zetl4jsa1AUJBHo_rPjatitlFyyYmSWvMn4hc',
   callbackURL: 'http://localhost:3000/callback'  // This should match the callback URL you set in the Auth0 dashboard
 }, (accessToken: any, refreshToken: any, extraParams: any, profile: any, done: (arg0: null, arg1: any) => any) => {
   // Here, you can save user data to a session or database
