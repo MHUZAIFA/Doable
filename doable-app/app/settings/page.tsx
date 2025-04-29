@@ -15,7 +15,6 @@ import { toast } from "@/hooks/use-toast"
 import { PreferenceQuestionnaire } from "@/components/preference-questionnaire"
 
 export default function SettingsPage() {
-    const [isPreferenceModalOpen, setIsPreferenceModalOpen] = useState(false)
     const [isSaving, setIsSaving] = useState(false)
 
     const handleSave = () => {
@@ -92,24 +91,6 @@ export default function SettingsPage() {
                                     {isSaving ? "Saving..." : "Save changes"}
                                 </Button>
                             </CardFooter>
-                        </Card>
-                    </FadeIn>
-
-                    <FadeIn direction="up" duration={500} delay={100}>
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Preferences</CardTitle>
-                                <CardDescription>Set your activity preferences to get personalized recommendations.</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <Button
-                                    onClick={() => setIsPreferenceModalOpen(true)}
-                                    className="w-full sm:w-auto transition-all duration-300 hover:shadow-md active:scale-95"
-                                >
-                                    <Sliders className="mr-2 h-4 w-4" />
-                                    Update Preferences
-                                </Button>
-                            </CardContent>
                         </Card>
                     </FadeIn>
                 </TabsContent>
@@ -245,7 +226,6 @@ export default function SettingsPage() {
                 </TabsContent>
             </Tabs>
 
-            <PreferenceQuestionnaire open={isPreferenceModalOpen} onOpenChange={setIsPreferenceModalOpen} />
         </div>
     )
 }

@@ -16,7 +16,7 @@ import { FadeIn } from "@/components/animations/fade-in"
 
 export function Header() {
   const pathname = usePathname()
-  const isAuthPage = pathname === "/login" || pathname === "/register"
+  const isAuthPage = pathname === "/" || pathname === "/register"
 
   if (isAuthPage) {
     return (
